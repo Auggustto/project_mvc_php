@@ -34,7 +34,6 @@ class user_all
         $res = $select_all->fetchAll(PDO::FETCH_ASSOC);
         return $res;
     }
-
     // Cadastrando usuarios 
     public function InsertUsers($name, $phone, $email)
     {
