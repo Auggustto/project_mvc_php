@@ -13,7 +13,7 @@ $ret = new user_all("project", "localhost", "root", "");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="app/global/style/home.css">
+    <link rel="stylesheet" href="app/global/style/css/home.css">
     <title>CRUD de Clientes</title>
 </head>
 
@@ -28,10 +28,8 @@ $ret = new user_all("project", "localhost", "root", "");
         // Validando se tem campos vazios
         if (!empty($name) && !empty($email) && !empty($telephone));
         if (!$ret->InsertUsers($name, $telefone, $email)) {
-            echo "Email já cadastrado!.";
-        } else {
-            echo "Preencha todos os campos!";
-        }
+            
+        } 
     }
     ?>
     <div class="container">
@@ -52,7 +50,7 @@ $ret = new user_all("project", "localhost", "root", "");
                 <label for="tel">Telefone:</label>
                 <input type="tel" class="form-control" name="telefone" id="telefone" required>
             </div>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button onclick="showAlert()" type="submit" class="btn btn-primary">Salvar</button>
             <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
         </form>
         <table class="table mt-4">
@@ -95,4 +93,5 @@ $ret = new user_all("project", "localhost", "root", "");
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="app/global/style/js/alert.js"></script>
 <script>
