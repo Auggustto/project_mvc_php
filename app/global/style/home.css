@@ -7,3 +7,12 @@ a {
     margin: 0px 5px;
     text-decoration: none;
 }
+
+.head td:nth-child(4n){
+    text-align: center;
+}
+
+.botton-collumn {
+    display: flex;
+    justify-content: space-around;
+}

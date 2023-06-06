@@ -2,9 +2,10 @@
 
 require_once 'app/models/lib/database/models.php';
 
-$ret = new user_all("project","localhost", "root", "");
-?>
+$ret = new user_all("project", "localhost", "root", "");
 
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -13,11 +14,26 @@ $ret = new user_all("project","localhost", "root", "");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/global/style/home.css">
-    
     <title>CRUD de Clientes</title>
 </head>
 
 <body>
+    <?php
+    if (isset($_POST['name'])) {
+        // addslashes -> Protege de inputs maliciosos
+        $name = addslashes($_POST['name']);
+        $telefone = addslashes($_POST['telefone']);
+        $email = addslashes($_POST['email']);
+
+        // Validando se tem campos vazios
+        if (!empty($name) && !empty($email) && !empty($telephone));
+        if (!$ret->InsertUsers($name, $telefone, $email)) {
+            echo "Email já cadastrado!.";
+        } else {
+            echo "Preencha todos os campos!";
+        }
+    }
+    ?>
     <div class="container">
         <h1>CRUD de Clientes</h1>
 
@@ -41,39 +57,39 @@ $ret = new user_all("project","localhost", "root", "");
         </form>
         <table class="table mt-4">
             <thead>
-                <tr>
-                    <td>ID</td>
+                <tr class="head">
+                    <!-- <td>ID</td> -->
                     <td>Nome</td>
-                    <td colspan="2">Email</td>
+                    <td>Email</td>
                     <td>Telefone</td>
+                    <td colspan="2"> Editar</td>
                 </tr>
                 <?php
-                    $data = $ret->search_values();
-                    
-                    if(count($data) >0 )
-                    {
-                        for ($i=0; $i < count($data); $i ++) 
-                        {
-                            echo "<tr>";
-                            foreach($data[$i] as $key => $value)
-                            {
-                                if($key != "id")
-                                {
-                                    echo "<td>".$value."</td>";
-                                }
+                $data = $ret->search_values();
+
+                if (count($data) > 0) {
+                    for ($i = 0; $i < count($data); $i++) {
+                        echo "<tr>";
+                        foreach ($data[$i] as $key => $value) {
+                            if ($key != "id") {
+                                echo "<td>" . $value . "</td>";
                             }
-                            echo "</tr>";
                         }
-                        ?>
-                            <td><a class="ed" href="">Editar</a><a class="ex" href="">Excluir</a></td>
-                            echo "<tr>";
-                        <?php
-                    }
                 ?>
+                        <td class="botton-collumn"><a href="">Editar</a><a class="ex" href="">Excluir</a></td>
+                    <?php
+                        echo "</tr>";
+                    }
+
+                    ?>
+                <?php
+                }
+                ?>
+
                 </tr>
             </thead>
             <tbody id="clientTableBody">
-        </tbody>
+            </tbody>
         </table>
     </div>
 </body>
