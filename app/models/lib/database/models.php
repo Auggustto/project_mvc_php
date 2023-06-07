@@ -7,12 +7,14 @@ class user_all
     private $pdo;
 
     // Conexão com o banco de dados OBS: Tudo que está dentro do function __construct(), será executado primeiro.
-    public function __construct($database, $servername, $username,  $password)
+    //public function __construct($database, $servername, $username,  $password)
+    public function __construct()
     {
         try {
 
-            $this->pdo = new PDO("mysql:dbname=" . $database . ";host=" . $servername, $username, $password);
-            //echo "Conexão estabelecida com sucesso.";
+            //$this->pdo = new PDO("mysql:dbname=" . $database . ";host=" . $servername, $username, $password);
+            $this->pdo = new PDO("mysql:dbname=project;host=localhost","root","");
+            echo "Conexão estabelecida com sucesso.";
 
         } catch (PDOException $e) {
             echo "Erro ao conectar com o banco de dados: " . $e->getMessage();

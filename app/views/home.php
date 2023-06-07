@@ -4,7 +4,7 @@ require_once 'app/models/lib/database/models.php';
 require_once 'app/models/lib/database/insert.php';
 
 
-$ret = new user_all("project", "localhost", "root", "");
+$ret = new user_all();
 
 ?>
 <!DOCTYPE html>
@@ -70,6 +70,7 @@ $ret = new user_all("project", "localhost", "root", "");
                     <td>Telefone</td>
                     <td colspan="2"> Editar</td>
                 </tr>
+                
                 <?php
                 $data = $ret->search_values();
 
@@ -80,21 +81,22 @@ $ret = new user_all("project", "localhost", "root", "");
                             if ($key != "id") {
                                 echo "<td>" . $value . "</td>";
                             }
-                        }
+                       }
+                // index.php?id_user=<?php $data[$i]["id"]
+                
                 ?>
                         <td class="botton-collumn">
                             <a href="">Editar</a>
                             <!-- Pegando o valor do id de cada usuario -->
-                            <a href="index.php?id_user=<?php $data[$i]["id"] ?>">Excluir</a>
+                            <a href="">Excluir</a>
                         </td>
                     <?php
                         echo "</tr>";
-                    }
+                     }
                     ?>
                 <?php
                 }
                 ?>
-
                 </tr>
             </thead>
             <tbody id="clientTableBody">
@@ -105,7 +107,3 @@ $ret = new user_all("project", "localhost", "root", "");
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-    <?php if (isset($_GET['id_user'])) {
-        $link = $_GET['id_user'];
-        echo "valor" . $link;
-    } ?>

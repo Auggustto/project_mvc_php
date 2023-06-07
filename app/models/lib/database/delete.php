@@ -15,7 +15,9 @@ function DeleteUser()
         header("location: index.php");
 
         if ($id_user) {
-            echo '<script>'; echo 'alert("Usuário deletado com sucesso!")'; echo '</script>';
+            echo '<script>';
+            echo 'alert("Usuário deletado com sucesso!")';
+            echo '</script>';
         } else {
             echo '<script>';
             echo 'alert("Usuário não foi deletado!")';
