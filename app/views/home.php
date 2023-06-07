@@ -5,8 +5,6 @@ require_once 'app/models/lib/database/insert.php';
 
 $ret = new user_all("project", "localhost", "root", "");
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,11 +26,16 @@ $ret = new user_all("project", "localhost", "root", "");
         $email = addslashes($_POST['email']);
 
         // Validando se tem campos vazios
-        if (!empty($name) && !empty($email) && !empty($telephone));
+        // if (!empty($name) && !empty($email) && !empty($telephone));
         if (!$ret->InsertUsers($name, $telefone, $email)) {
-            echo '<script src="alert.js"></script>';
-            //onclick="showAlert()";
-        } 
+            echo '<script>';
+            echo 'alert("Dados salvos com sucesso!")';
+            echo '</script>';
+        }else{
+            echo '<script>';
+            echo 'alert("Atenção! Usuário já cadastrado.")';
+            echo '</script>';
+        }
     }
     ?>
     <div class="container">
@@ -96,6 +99,4 @@ $ret = new user_all("project", "localhost", "root", "");
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="app/global/style/js/alert.js"></script>
-<script src="app/global/style/js/alert_insert.js"></script>
 <script>

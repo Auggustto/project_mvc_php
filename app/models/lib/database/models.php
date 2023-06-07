@@ -40,11 +40,11 @@ class user_all
         // Validando se o email do usuario já existe
         $insert = $this->pdo->prepare("SELECT id from users WHERE email = :e");
         $insert->bindValue(":e", $email);
+        echo $email;
         $insert->execute();
-
         // Validando se retornou ID pesquisado
         if ($insert->rowCount() > 0) {
-            return false;
+            return true;
         } else  // Email não foi localizado
         {
             $insert = $this->pdo->prepare("INSERT INTO users (name, email, telephone) VALUES (:n, :t, :e)");
@@ -52,7 +52,7 @@ class user_all
             $insert->bindValue(":t", $email);
             $insert->bindValue(":e", $phone);
             $insert->execute();
-            return true;
+            return false;
         }
     }
 }
