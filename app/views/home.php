@@ -3,6 +3,7 @@
 require_once 'app/models/lib/database/models.php';
 require_once 'app/models/lib/database/insert.php';
 
+
 $ret = new user_all("project", "localhost", "root", "");
 
 ?>
@@ -31,12 +32,13 @@ $ret = new user_all("project", "localhost", "root", "");
             echo '<script>';
             echo 'alert("Dados salvos com sucesso!")';
             echo '</script>';
-        }else{
+        } else {
             echo '<script>';
             echo 'alert("Atenção! Usuário já cadastrado.")';
             echo '</script>';
         }
     }
+    // Pegando o valor do ID
     ?>
     <div class="container">
         <h1>CRUD de Clientes</h1>
@@ -80,11 +82,14 @@ $ret = new user_all("project", "localhost", "root", "");
                             }
                         }
                 ?>
-                        <td class="botton-collumn"><a href="">Editar</a><a class="ex" href="">Excluir</a></td>
+                        <td class="botton-collumn">
+                            <a href="">Editar</a>
+                            <!-- Pegando o valor do id de cada usuario -->
+                            <a href="index.php?id_user=<?php $data[$i]["id"] ?>">Excluir</a>
+                        </td>
                     <?php
                         echo "</tr>";
                     }
-
                     ?>
                 <?php
                 }
@@ -100,3 +105,7 @@ $ret = new user_all("project", "localhost", "root", "");
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
+    <?php if (isset($_GET['id_user'])) {
+        $link = $_GET['id_user'];
+        echo "valor" . $link;
+    } ?>

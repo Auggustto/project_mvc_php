@@ -6,8 +6,8 @@ class HomeController
 {
     public function index()
     {
-       $insert_us = insert();
-       echo $insert_us; 
+       //$insert_us = insert();
+        
     }
 }
 

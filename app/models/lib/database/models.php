@@ -40,7 +40,6 @@ class user_all
         // Validando se o email do usuario já existe
         $insert = $this->pdo->prepare("SELECT id from users WHERE email = :e");
         $insert->bindValue(":e", $email);
-        echo $email;
         $insert->execute();
         // Validando se retornou ID pesquisado
         if ($insert->rowCount() > 0) {
@@ -54,5 +53,12 @@ class user_all
             $insert->execute();
             return false;
         }
+    }
+    public function DeleteUser($id)
+    {
+        $delete = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
+        $delete->bindValue(":id",$id);
+        $delete->execute();
+        return true;
     }
 }
